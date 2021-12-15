@@ -2,9 +2,12 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const { childSchema } = require("./child");
 
 const userSchema = mongoose.Schema({
-  name: { type: String, required: true, minLength: 5, maxLength: 50 },
+  firstName: { type: String, required: true, minLength: 5, maxLength: 50 },
+  lastName: { type: String, required: true, minLength: 5, maxLength: 50 },
+  children: {type: [childSchema]},
   email: {
     type: String,
     unique: true,
